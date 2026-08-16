@@ -112,5 +112,5 @@ export const whatsappGroups: Link[] = [
 
 export const instagram: Link[] = [
   { label: "@abroadathkust", url: "https://www.instagram.com/abroadathkust/" },
-  { label: "@hongkongust", url: "https://www.instagram.com/hongkongust" },
+  { label: "@hongkongust", url: "https://ig.me/j/AbY91ArBAmKZitn3/" },
 ];
