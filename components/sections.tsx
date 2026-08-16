@@ -23,6 +23,8 @@ import {
   X,
   Share2,
   Calendar,
+  Plane,
+  ShieldCheck,
 } from "lucide-react";
 import { Logo, LogoMark } from "@/components/Logo";
 import { AddToCalendar } from "@/components/AddToCalendar";
@@ -172,8 +174,9 @@ function Section({
 /* ---------- nav ---------- */
 
 const NAV = [
-  ["Schedule", "schedule"],
   ["Checklist", "before"],
+  ["Visa", "visa"],
+  ["Schedule", "schedule"],
   ["Card", "card"],
   ["Housing", "housing"],
   ["Connect", "connect"],
@@ -750,6 +753,87 @@ function StudentCardSection() {
   );
 }
 
+/* ---------- student visa ---------- */
+
+function VisaSection() {
+  const steps = [
+    "Your student visa is an e-Visa in PDF format. You can travel in and out of Hong Kong within its validity period. Check your name and visa validity period on the visa label. If anything is wrong, email study.abroad@ust.hk as soon as possible.",
+    "Save a soft copy on your phone and print it on a sheet of A4 white paper. Your travel document must be valid and the same nationality as stated in your application.",
+    'At the Immigration Counter, you MUST show your student visa AND your travel document. Make sure the officer issues you a LANDING SLIP stating "STUDENT - Permitted to remain until DD-Mmm-YYYY". Without it, your visa is not activated and you cannot collect your HKUST Student Card.',
+    "Keep your landing slip safe for your whole stay in Hong Kong. You will need it to collect your student card and upload later.",
+  ];
+  return (
+    <div className="grid gap-4 md:grid-cols-5">
+      <div className="reveal glass rounded-3xl p-7 sm:p-9 md:col-span-3">
+        <div className="flex items-center gap-2 text-accent">
+          <Plane className="h-5 w-5" />
+          <p className="mono-label !text-accent">Entering Hong Kong</p>
+        </div>
+        <ol className="mt-5 space-y-5">
+          {steps.map((s, i) => (
+            <li key={i} className="flex gap-4">
+              <span className="font-sans text-xl font-semibold tabular-nums tracking-tightest text-accent">
+                0{i + 1}
+              </span>
+              <span className="text-[15px] leading-relaxed text-ink/70 dark:text-paper/70">
+                {s}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div className="reveal flex flex-col gap-4 md:col-span-2">
+        <div className="glass rounded-3xl p-7">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="h-5 w-5 text-ink/40 dark:text-paper/40" />
+            <p className="mono-label">Good to know</p>
+          </div>
+          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink/70 dark:text-paper/70">
+            <li>
+              The visa only covers entry to Hong Kong. Depending on your citizenship you
+              may also need an exit permit from your home country. You are responsible for
+              completing any such steps.
+            </li>
+            <li>
+              Enter and leave Hong Kong within the dates on your visa, or it becomes void.
+              To stay on after your exchange, you may need a tourist visa.
+            </li>
+          </ul>
+        </div>
+        <div className="rounded-3xl bg-ink p-7 text-paper dark:bg-white/[0.06]">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-paper/50">
+            Travelling to the Chinese Mainland
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-paper/80">
+            You may need a Chinese Mainland tourist visa, from a PRC Embassy or
+            Consulate-General in your country or after you arrive in Hong Kong.
+          </p>
+          <div className="mt-4 flex flex-col gap-2">
+            <a
+              href="https://www.visaforchina.cn/HKG3_EN/qianzhengyewu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-between gap-2 rounded-full bg-paper/10 px-4 py-2.5 text-sm font-medium transition hover:bg-accent"
+            >
+              Chinese Visa Application Center
+              <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <a
+              href="https://ww1.ctshk.com/en/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-between gap-2 rounded-full bg-paper/10 px-4 py-2.5 text-sm font-medium transition hover:bg-accent"
+            >
+              China Travel Service (Hong Kong)
+              <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- housing ---------- */
 
 function HousingSection() {
@@ -806,7 +890,7 @@ function Connect() {
           <MessageCircle className="h-5 w-5 text-ink/30 dark:text-paper/30" />
         </div>
         <p className="mt-2 text-xs text-ink/50 dark:text-paper/50">
-          Added by the community. Empty ones are coming soon.
+          Community-run groups. Tap to join on WhatsApp.
         </p>
         <div className="mt-5 grid gap-2">
           {whatsappGroups.map((g) =>
@@ -1036,8 +1120,17 @@ export function Page() {
           <Checklist />
         </Section>
         <Section
-          id="schedule"
+          id="visa"
           index="02"
+          eyebrow="Student visa"
+          title="Your visa and arrival"
+          intro="Read this before you fly. Your landing slip is what activates your visa and unlocks your student card."
+        >
+          <VisaSection />
+        </Section>
+        <Section
+          id="schedule"
+          index="03"
           eyebrow="Orientation"
           title="The full schedule"
         >
@@ -1045,30 +1138,30 @@ export function Page() {
         </Section>
         <Section
           id="card"
-          index="03"
+          index="04"
           eyebrow="Student card"
           title="Your key to campus"
         >
           <StudentCardSection />
         </Section>
-        <Section id="housing" index="04" eyebrow="Housing" title="Halls and moving in">
+        <Section id="housing" index="05" eyebrow="Housing" title="Halls and moving in">
           <HousingSection />
         </Section>
-        <Section id="connect" index="05" eyebrow="Get connected" title="Find your people">
+        <Section id="connect" index="06" eyebrow="Get connected" title="Find your people">
           <Connect />
         </Section>
         <Section
           id="links"
-          index="06"
+          index="07"
           eyebrow="Quick links"
           title="Official HKUST systems"
         >
           <QuickLinks />
         </Section>
-        <Section id="perks" index="07" eyebrow="Fun and perks" title="Make the most of it">
+        <Section id="perks" index="08" eyebrow="Fun and perks" title="Make the most of it">
           <Perks />
         </Section>
-        <Section id="faq" index="08" eyebrow="FAQ" title="Common questions">
+        <Section id="faq" index="09" eyebrow="FAQ" title="Common questions">
           <Faq />
         </Section>
       </main>
