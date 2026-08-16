@@ -5,6 +5,31 @@ export type LinkGroup = { title: string; links: Link[] };
 
 export const quickLinks: LinkGroup[] = [
   {
+    title: "Registration & Visa",
+    links: [
+      {
+        label: "Student Hotlinks (all systems)",
+        url: "https://itso.hkust.edu.hk/student-hotlinks/",
+      },
+      {
+        label: "SIS Online Program Registration",
+        url: "https://sisprod.psft.ust.hk/psp/SISPROD/EMPLOYEE/HRMS/c/Z_SR_MNU.ZR_REG_FORM_CMP.GBL?",
+      },
+      {
+        label: "Download HK e-Visa",
+        url: "https://www.gov.hk/en/residents/immigration/nonpermanent/downloadevisa.htm",
+      },
+      {
+        label: "Registration guidance",
+        url: "https://registry.hkust.edu.hk/resource-library/guidance-completing-your-online-program-registration",
+      },
+      {
+        label: "Document upload samples",
+        url: "https://registry.hkust.edu.hk/resource-library/upload-registration-document-samples",
+      },
+    ],
+  },
+  {
     title: "Academics",
     links: [
       {
@@ -78,4 +103,7 @@ export const whatsappGroups: Link[] = [
   { label: "Computer Science", url: "https://chat.whatsapp.com/IpgPD3Nh6vQ7XlG1boVdgK" },
 ];
 
-export const instagramUrl = "https://www.instagram.com/abroadathkust/";
+export const instagram: Link[] = [
+  { label: "@abroadathkust", url: "https://www.instagram.com/abroadathkust/" },
+  { label: "@hongkongust", url: "https://www.instagram.com/hongkongust" },
+];
