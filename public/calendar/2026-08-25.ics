@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HKUST Exchange Hub//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Hong_Kong
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:HKT
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:free_essentials@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260825T140000
+DTEND;TZID=Asia/Hong_Kong:20260825T170000
+SUMMARY:Free Essentials Pickup - "Stop! Don't Shop! Adopt!"
+DESCRIPTION:Pick up FREE beddings\, kitchenware and electronics for your ne
+ w hall - don't buy what you can adopt! Weekday only. Full schedule: 20-24 
+ Aug beddings 2-5pm\; 25-26 Aug all items 2-5pm\; 27 Aug-1 Sep 12-5pm. Loca
+ tion: Living Lab Hub (opposite Passione Cafe).
+LOCATION:Living Lab Hub (opposite Passione Cafe)
+END:VEVENT
+END:VCALENDAR

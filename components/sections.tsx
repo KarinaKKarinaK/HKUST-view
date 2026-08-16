@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -31,7 +32,7 @@ import { AddToCalendar } from "@/components/AddToCalendar";
 import { events, campusTourSlots, type CalEvent } from "@/data/events";
 import { quickLinks, whatsappGroups, instagram } from "@/data/links";
 import { checklistItems, faq, studentCard, lastUpdated } from "@/data/content";
-import { downloadIcs } from "@/lib/calendar";
+import { googleSubscribeUrl, outlookSubscribeUrl } from "@/lib/calendar";
 import { dayLabel, dayKey, timeLabel } from "@/lib/format";
 
 /* ---------- school personalization (retention feature) ---------- */
@@ -79,6 +80,104 @@ const CAT: Record<CalEvent["category"], { label: string; accent: boolean }> = {
   social: { label: "Social", accent: false },
   logistics: { label: "Logistics", accent: false },
 };
+
+// Bulk add: opens Google or Outlook to subscribe to a hosted .ics (adds every
+// event at once), or downloads the .ics for Apple Calendar and others.
+// The menu is portaled to <body> with fixed positioning so it is never clipped
+// or covered by animated/overflow-hidden ancestors.
+function BulkCalendar({
+  icsPath,
+  name,
+  label,
+  triggerClass,
+}: {
+  icsPath: string;
+  name: string;
+  label: string;
+  triggerClass: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState({ top: 0, left: 0 });
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const toggle = () => {
+    if (!open && btnRef.current) {
+      const r = btnRef.current.getBoundingClientRect();
+      setPos({ top: r.bottom + 8, left: Math.min(r.left, window.innerWidth - 240) });
+    }
+    setOpen((v) => !v);
+  };
+
+  useEffect(() => {
+    if (!open) return;
+    const close = (e: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target as Node) &&
+        btnRef.current &&
+        !btnRef.current.contains(e.target as Node)
+      )
+        setOpen(false);
+    };
+    const dismiss = () => setOpen(false);
+    document.addEventListener("mousedown", close);
+    window.addEventListener("scroll", dismiss, true);
+    window.addEventListener("resize", dismiss);
+    return () => {
+      document.removeEventListener("mousedown", close);
+      window.removeEventListener("scroll", dismiss, true);
+      window.removeEventListener("resize", dismiss);
+    };
+  }, [open]);
+
+  const openUrl = (make: (u: string) => string) => {
+    window.open(make(window.location.origin + icsPath), "_blank", "noopener");
+    setOpen(false);
+  };
+  const item =
+    "block w-full px-4 py-3 text-left text-sm font-medium hover:bg-ink/5 dark:hover:bg-white/10";
+
+  return (
+    <>
+      <button
+        ref={btnRef}
+        onClick={toggle}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        className={`no-print ${triggerClass}`}
+      >
+        <Calendar className="h-4 w-4" />
+        {label}
+        <ChevronDown className="h-3.5 w-3.5 opacity-60" />
+      </button>
+      {open &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            ref={menuRef}
+            role="menu"
+            style={{ position: "fixed", top: pos.top, left: pos.left }}
+            className="glass z-[200] w-56 overflow-hidden rounded-xl shadow-2xl"
+          >
+            <button className={item} onClick={() => openUrl(googleSubscribeUrl)}>
+              Google Calendar
+            </button>
+            <button
+              className={item}
+              onClick={() => openUrl((u) => outlookSubscribeUrl(u, name))}
+            >
+              Outlook
+            </button>
+            <a href={icsPath} download className={item} onClick={() => setOpen(false)}>
+              Apple / .ics download
+            </a>
+          </div>,
+          document.body
+        )}
+    </>
+  );
+}
 
 function useReveal() {
   useEffect(() => {
@@ -478,13 +577,12 @@ function Hero() {
               View the schedule
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
             </a>
-            <button
-              onClick={() => downloadIcs(events, "hkust-exchange-all-dates")}
-              className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-6 py-3.5 text-sm font-semibold text-ink transition hover:border-ink hover:bg-ink hover:text-paper dark:border-white/25 dark:text-paper dark:hover:bg-paper dark:hover:text-ink"
-            >
-              <Calendar className="h-4 w-4" />
-              Add all key dates
-            </button>
+            <BulkCalendar
+              icsPath="/calendar/all.ics"
+              name="HKUST Exchange key dates"
+              label="Add all key dates"
+              triggerClass="inline-flex items-center gap-2 rounded-full border border-ink/20 px-6 py-3.5 text-sm font-semibold text-ink transition hover:border-ink hover:bg-ink hover:text-paper dark:border-white/25 dark:text-paper dark:hover:bg-paper dark:hover:text-ink"
+            />
           </div>
         </div>
 
@@ -689,12 +787,14 @@ function Schedule() {
               <p className="mono-label mt-1">
                 {g.items.length} {g.items.length === 1 ? "event" : "events"}
               </p>
-              <button
-                onClick={() => downloadIcs(g.items, `hkust-${g.day}`)}
-                className="no-print mt-3 inline-flex items-center gap-1.5 rounded-full border border-ink/15 px-3 py-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-ink/60 transition hover:border-ink hover:text-ink dark:border-white/20 dark:text-paper/60 dark:hover:border-white/50 dark:hover:text-paper"
-              >
-                <Calendar className="h-3 w-3" /> Add day
-              </button>
+              <div className="mt-3">
+                <BulkCalendar
+                  icsPath={`/calendar/${g.day}.ics`}
+                  name={`HKUST ${g.label}`}
+                  label="Add day"
+                  triggerClass="no-print inline-flex items-center gap-1.5 rounded-full border border-ink/15 px-3 py-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-ink/60 transition hover:border-ink hover:text-ink dark:border-white/20 dark:text-paper/60 dark:hover:border-white/50 dark:hover:text-paper"
+                />
+              </div>
             </div>
           </div>
           <div className="space-y-4 md:col-span-9">
@@ -1152,12 +1252,12 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-14">
         <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
           <Logo />
-          <button
-            onClick={() => downloadIcs(events, "hkust-exchange-all-dates")}
-            className="group inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-semibold transition hover:border-ink hover:bg-ink hover:text-paper dark:border-white/25 dark:hover:bg-paper dark:hover:text-ink"
-          >
-            <Calendar className="h-4 w-4" /> Add all key dates
-          </button>
+          <BulkCalendar
+            icsPath="/calendar/all.ics"
+            name="HKUST Exchange key dates"
+            label="Add all key dates"
+            triggerClass="inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-semibold transition hover:border-ink hover:bg-ink hover:text-paper dark:border-white/25 dark:hover:bg-paper dark:hover:text-ink"
+          />
         </div>
         <p className="mt-8 max-w-3xl text-sm leading-relaxed text-ink/50 dark:text-paper/50">
           Made by exchange students, for exchange students. Unofficial and

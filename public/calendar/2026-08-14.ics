@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HKUST Exchange Hub//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Hong_Kong
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:HKT
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:online_reg@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;VALUE=DATE:20260814
+DTEND;VALUE=DATE:20260815
+SUMMARY:Online Registration Deadline (before arrival)
+DESCRIPTION:Complete BEFORE your arrival at HKUST: (1) Online Registration 
+ Form\; (2) Upload your travel document / student e-Visa\; (3) Upload a pas
+ sport-style photo on a white background\; (4) Complete the Assumption of R
+ isk & Release Form. SBM students: wait for instructions from your School. 
+ Not applicable to HKUST Guangzhou campus students.
+END:VEVENT
+END:VCALENDAR

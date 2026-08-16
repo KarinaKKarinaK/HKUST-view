@@ -1,0 +1,56 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HKUST Exchange Hub//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Hong_Kong
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:HKT
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:hall_checkin@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260827T100000
+DTEND;TZID=Asia/Hong_Kong:20260827T103000
+SUMMARY:Hall Check-in Opens (earliest)
+DESCRIPTION:Earliest check-in to HKUST student housing is 10:00am\, 27 Aug 
+ - no early check-in can be arranged. Hall allocation results are emailed t
+ o your HKUST account from SHRLO around one week before the earliest check-
+ in date. Undergraduate exchange students are guaranteed and expected to st
+ ay in university housing.
+LOCATION:HKUST Student Housing
+END:VEVENT
+BEGIN:VEVENT
+UID:welcome_lounge_1@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260827T140000
+DTEND;TZID=Asia/Hong_Kong:20260827T170000
+SUMMARY:Welcome Lounge (Day 1) + Campus Tour sign-up
+DESCRIPTION:At the Welcome Lounge (Tsang Shiu Tim Art Hall) collect your we
+ lcome package - insurance certificate\, Non-local Student Pocket Guide\, I
+ nternational SOS Information Sheet\, International SOS Membership Card\, E
+ mergency Card\, and your Welcome Reception entry pass - plus a welcome gif
+ t. Sign up for a campus tour\, meet your HKUST Exchange Buddies\, and ask 
+ any questions. Service hours: 27 Aug 14:00-17:00\; 28 Aug 09:30-11:30.
+LOCATION:Tsang Shiu Tim Art Hall
+END:VEVENT
+BEGIN:VEVENT
+UID:student_card@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260827T140000
+DTEND;TZID=Asia/Hong_Kong:20260827T170000
+SUMMARY:Collect Student Card (Day 1)
+DESCRIPTION:Bring your travel document (Passport\, EEP\, or HKID) and your 
+ landing slip. Your card is ready the next working day AFTER you submit ALL
+  registration documents (including the landing slip). Pick-up: 27 Aug 14:0
+ 0-17:00 & 28 Aug 10:00-12:00 / 14:00-16:00 at LT-L\, G/F\, Cheng Yu Tung B
+ uilding\; from 1 Sep at the Academic Registry Office during office hours. 
+ Collection deadline: 11 Sep.
+LOCATION:LT-L\, G/F\, Cheng Yu Tung Building
+END:VEVENT
+END:VCALENDAR

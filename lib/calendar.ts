@@ -21,6 +21,36 @@ export function googleCalUrl(e: CalEvent): string {
   return `https://calendar.google.com/calendar/render?${p.toString()}`;
 }
 
+// Outlook / Microsoft 365 web deep link that opens a prefilled event to save.
+export function outlookCalUrl(e: CalEvent): string {
+  const p = new URLSearchParams({
+    rru: "addevent",
+    subject: e.title,
+    body: e.details,
+  });
+  if (e.location) p.set("location", e.location);
+  if (e.allDay) {
+    p.set("allday", "true");
+    p.set("startdt", e.start);
+    p.set("enddt", e.end);
+  } else {
+    // Include the HKT offset so the time is correct in any viewer's Outlook.
+    p.set("startdt", `${e.start}+08:00`);
+    p.set("enddt", `${e.end}+08:00`);
+  }
+  return `https://outlook.live.com/calendar/0/action/compose?${p.toString()}`;
+}
+
+// Subscribe links for a whole hosted .ics (adds every event at once).
+export function googleSubscribeUrl(icsUrl: string): string {
+  return `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(icsUrl)}`;
+}
+
+export function outlookSubscribeUrl(icsUrl: string, name: string): string {
+  const p = new URLSearchParams({ url: icsUrl, name });
+  return `https://outlook.live.com/calendar/0/addfromweb?${p.toString()}`;
+}
+
 // Escape per RFC 5545.
 const esc = (s: string) =>
   s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");

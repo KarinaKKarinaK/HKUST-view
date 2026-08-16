@@ -1,0 +1,63 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HKUST Exchange Hub//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Hong_Kong
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:HKT
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:welcome_lounge_2@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260828T093000
+DTEND;TZID=Asia/Hong_Kong:20260828T113000
+SUMMARY:Welcome Lounge (Day 2)
+DESCRIPTION:At the Welcome Lounge (Tsang Shiu Tim Art Hall) collect your we
+ lcome package - insurance certificate\, Non-local Student Pocket Guide\, I
+ nternational SOS Information Sheet\, International SOS Membership Card\, E
+ mergency Card\, and your Welcome Reception entry pass - plus a welcome gif
+ t. Sign up for a campus tour\, meet your HKUST Exchange Buddies\, and ask 
+ any questions. Service hours: 27 Aug 14:00-17:00\; 28 Aug 09:30-11:30.
+LOCATION:Tsang Shiu Tim Art Hall
+END:VEVENT
+BEGIN:VEVENT
+UID:orientation@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260828T130000
+DTEND;TZID=Asia/Hong_Kong:20260828T145000
+SUMMARY:Orientation Session (MANDATORY)
+DESCRIPTION:Mandatory orientation session for all incoming exchange student
+ s. Shaw Auditorium\, 13:00-14:50.
+LOCATION:Shaw Auditorium
+END:VEVENT
+BEGIN:VEVENT
+UID:academic_induction@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260828T150000
+DTEND;TZID=Asia/Hong_Kong:20260828T170000
+SUMMARY:Academic Induction Session (your School only)
+DESCRIPTION:Attend the Academic Induction of your admitted School ONLY (3:0
+ 0-5:00pm): School of Science (SSCI) to Lecture Theatre E · School of Engin
+ eering (SENG) to Lecture Theatre A · School of Business & Management (SBM)
+  to Lecture Theatre B · School of Humanities & Social Science (SHSS) to Le
+ cture Theatre K.
+LOCATION:Cheng Yu Tung Building lecture theatres
+END:VEVENT
+BEGIN:VEVENT
+UID:ikea_shuttle@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260828T170000
+DTEND;TZID=Asia/Hong_Kong:20260828T200000
+SUMMARY:IKEA Shuttle Bus
+DESCRIPTION:Shuttle bus to IKEA to grab essentials and beddings. Gather at 
+ the Welcome Lounge\; return route IKEA to Jockey Club Hall to HKUST. 28 Au
+ g 17:00-20:00.
+LOCATION:Gather at Welcome Lounge (Tsang Shiu Tim Art Hall)
+END:VEVENT
+END:VCALENDAR

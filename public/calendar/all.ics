@@ -1,0 +1,194 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HKUST Exchange Hub//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Hong_Kong
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:HKT
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:hk_tour_reg@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;VALUE=DATE:20260813
+DTEND;VALUE=DATE:20260814
+SUMMARY:HK Day Tour - Registration Deadline
+DESCRIPTION:Register for the Hong Kong Day Tour via the MyStudyAbroad syste
+ m. Quotas are limited and allocated by a random ballot after the deadline 
+ - no late registration. Results & payment details are announced by email b
+ y 17 Aug\; payment is due by 20 Aug. Meals are provided during the tour (l
+ imited dietary accommodation). School of Business & Management students ar
+ e recommended to choose Tour (1).
+LOCATION:MyStudyAbroad system
+END:VEVENT
+BEGIN:VEVENT
+UID:online_reg@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;VALUE=DATE:20260814
+DTEND;VALUE=DATE:20260815
+SUMMARY:Online Registration Deadline (before arrival)
+DESCRIPTION:Complete BEFORE your arrival at HKUST: (1) Online Registration 
+ Form\; (2) Upload your travel document / student e-Visa\; (3) Upload a pas
+ sport-style photo on a white background\; (4) Complete the Assumption of R
+ isk & Release Form. SBM students: wait for instructions from your School. 
+ Not applicable to HKUST Guangzhou campus students.
+END:VEVENT
+BEGIN:VEVENT
+UID:hk_tour_pay@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;VALUE=DATE:20260820
+DTEND;VALUE=DATE:20260821
+SUMMARY:HK Day Tour - Payment Deadline
+DESCRIPTION:If successful in the ballot\, settle your payment by 20 Aug to 
+ secure your seat. Check your email regularly.
+END:VEVENT
+BEGIN:VEVENT
+UID:free_essentials@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260825T140000
+DTEND;TZID=Asia/Hong_Kong:20260825T170000
+SUMMARY:Free Essentials Pickup - "Stop! Don't Shop! Adopt!"
+DESCRIPTION:Pick up FREE beddings\, kitchenware and electronics for your ne
+ w hall - don't buy what you can adopt! Weekday only. Full schedule: 20-24 
+ Aug beddings 2-5pm\; 25-26 Aug all items 2-5pm\; 27 Aug-1 Sep 12-5pm. Loca
+ tion: Living Lab Hub (opposite Passione Cafe).
+LOCATION:Living Lab Hub (opposite Passione Cafe)
+END:VEVENT
+BEGIN:VEVENT
+UID:hall_checkin@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260827T100000
+DTEND;TZID=Asia/Hong_Kong:20260827T103000
+SUMMARY:Hall Check-in Opens (earliest)
+DESCRIPTION:Earliest check-in to HKUST student housing is 10:00am\, 27 Aug 
+ - no early check-in can be arranged. Hall allocation results are emailed t
+ o your HKUST account from SHRLO around one week before the earliest check-
+ in date. Undergraduate exchange students are guaranteed and expected to st
+ ay in university housing.
+LOCATION:HKUST Student Housing
+END:VEVENT
+BEGIN:VEVENT
+UID:welcome_lounge_1@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260827T140000
+DTEND;TZID=Asia/Hong_Kong:20260827T170000
+SUMMARY:Welcome Lounge (Day 1) + Campus Tour sign-up
+DESCRIPTION:At the Welcome Lounge (Tsang Shiu Tim Art Hall) collect your we
+ lcome package - insurance certificate\, Non-local Student Pocket Guide\, I
+ nternational SOS Information Sheet\, International SOS Membership Card\, E
+ mergency Card\, and your Welcome Reception entry pass - plus a welcome gif
+ t. Sign up for a campus tour\, meet your HKUST Exchange Buddies\, and ask 
+ any questions. Service hours: 27 Aug 14:00-17:00\; 28 Aug 09:30-11:30.
+LOCATION:Tsang Shiu Tim Art Hall
+END:VEVENT
+BEGIN:VEVENT
+UID:student_card@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260827T140000
+DTEND;TZID=Asia/Hong_Kong:20260827T170000
+SUMMARY:Collect Student Card (Day 1)
+DESCRIPTION:Bring your travel document (Passport\, EEP\, or HKID) and your 
+ landing slip. Your card is ready the next working day AFTER you submit ALL
+  registration documents (including the landing slip). Pick-up: 27 Aug 14:0
+ 0-17:00 & 28 Aug 10:00-12:00 / 14:00-16:00 at LT-L\, G/F\, Cheng Yu Tung B
+ uilding\; from 1 Sep at the Academic Registry Office during office hours. 
+ Collection deadline: 11 Sep.
+LOCATION:LT-L\, G/F\, Cheng Yu Tung Building
+END:VEVENT
+BEGIN:VEVENT
+UID:welcome_lounge_2@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260828T093000
+DTEND;TZID=Asia/Hong_Kong:20260828T113000
+SUMMARY:Welcome Lounge (Day 2)
+DESCRIPTION:At the Welcome Lounge (Tsang Shiu Tim Art Hall) collect your we
+ lcome package - insurance certificate\, Non-local Student Pocket Guide\, I
+ nternational SOS Information Sheet\, International SOS Membership Card\, E
+ mergency Card\, and your Welcome Reception entry pass - plus a welcome gif
+ t. Sign up for a campus tour\, meet your HKUST Exchange Buddies\, and ask 
+ any questions. Service hours: 27 Aug 14:00-17:00\; 28 Aug 09:30-11:30.
+LOCATION:Tsang Shiu Tim Art Hall
+END:VEVENT
+BEGIN:VEVENT
+UID:orientation@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260828T130000
+DTEND;TZID=Asia/Hong_Kong:20260828T145000
+SUMMARY:Orientation Session (MANDATORY)
+DESCRIPTION:Mandatory orientation session for all incoming exchange student
+ s. Shaw Auditorium\, 13:00-14:50.
+LOCATION:Shaw Auditorium
+END:VEVENT
+BEGIN:VEVENT
+UID:academic_induction@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260828T150000
+DTEND;TZID=Asia/Hong_Kong:20260828T170000
+SUMMARY:Academic Induction Session (your School only)
+DESCRIPTION:Attend the Academic Induction of your admitted School ONLY (3:0
+ 0-5:00pm): School of Science (SSCI) to Lecture Theatre E · School of Engin
+ eering (SENG) to Lecture Theatre A · School of Business & Management (SBM)
+  to Lecture Theatre B · School of Humanities & Social Science (SHSS) to Le
+ cture Theatre K.
+LOCATION:Cheng Yu Tung Building lecture theatres
+END:VEVENT
+BEGIN:VEVENT
+UID:ikea_shuttle@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260828T170000
+DTEND;TZID=Asia/Hong_Kong:20260828T200000
+SUMMARY:IKEA Shuttle Bus
+DESCRIPTION:Shuttle bus to IKEA to grab essentials and beddings. Gather at 
+ the Welcome Lounge\; return route IKEA to Jockey Club Hall to HKUST. 28 Au
+ g 17:00-20:00.
+LOCATION:Gather at Welcome Lounge (Tsang Shiu Tim Art Hall)
+END:VEVENT
+BEGIN:VEVENT
+UID:wellbeing@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260831T104500
+DTEND;TZID=Asia/Hong_Kong:20260831T120000
+SUMMARY:Non-academic Opportunities & Your Wellbeing
+DESCRIPTION:Learn about sports and other non-academic opportunities and wel
+ lbeing support at HKUST. Shaw Auditorium\, 31 Aug 10:45-12:00.
+LOCATION:Shaw Auditorium
+END:VEVENT
+BEGIN:VEVENT
+UID:welcome_reception@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;TZID=Asia/Hong_Kong:20260831T121000
+DTEND;TZID=Asia/Hong_Kong:20260831T134500
+SUMMARY:Welcome Reception
+DESCRIPTION:Sip\, snack and socialize. Bring your Welcome Reception entry p
+ ass (collected at the Welcome Lounge). China Garden\, 31 Aug 12:10-13:45.
+LOCATION:China Garden
+END:VEVENT
+BEGIN:VEVENT
+UID:landing_slip@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;VALUE=DATE:20260911
+DTEND;VALUE=DATE:20260912
+SUMMARY:Landing Slip Upload & Student Card Collection Deadline
+DESCRIPTION:By 11 Sep\, upload your student landing slip (issued by the Imm
+ igration Officer when you enter Hong Kong)\, if applicable. This is also t
+ he deadline to collect your student card.
+END:VEVENT
+BEGIN:VEVENT
+UID:snap_challenge@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;VALUE=DATE:20260925
+DTEND;VALUE=DATE:20260926
+SUMMARY:Exchange Snap Challenge - Submission Deadline
+DESCRIPTION:Create a short video on one of these themes - travel vlog-style
+  reel of your orientation\, "Day in the Life at HKUST"\, "Hidden gems on c
+ ampus"\, "Hong Kong with HKUST"\, or "Found my squad at HKUST". Prizes: Gr
+ and Prize (5 winners) an Ocean Park ticket\; Appreciation Award a film cam
+ era OR a HK$200 Starbucks voucher. Submission deadline 25 Sep. Details sha
+ red via email.
+END:VEVENT
+END:VCALENDAR

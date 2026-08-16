@@ -51,7 +51,8 @@ HKUST websites linked in the app.
 All content lives in typed data files - no backend, no database:
 
 - **`data/events.ts`** - orientation schedule & key dates (titles, dates, venues, details,
-  category). Calendar links are generated from this.
+  category). Per-event Google and Outlook links are generated from this. After editing it,
+  run `npm run gen:ics` to refresh the hosted subscribe files in `public/calendar/`, then commit.
 - **`data/links.ts`** - official quick links **and** the `whatsappGroups` constant. Paste real
   invite links there:
   ```ts

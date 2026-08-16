@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HKUST Exchange Hub//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Hong_Kong
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:HKT
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:landing_slip@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;VALUE=DATE:20260911
+DTEND;VALUE=DATE:20260912
+SUMMARY:Landing Slip Upload & Student Card Collection Deadline
+DESCRIPTION:By 11 Sep\, upload your student landing slip (issued by the Imm
+ igration Officer when you enter Hong Kong)\, if applicable. This is also t
+ he deadline to collect your student card.
+END:VEVENT
+END:VCALENDAR

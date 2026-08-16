@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HKUST Exchange Hub//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Hong_Kong
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+TZNAME:HKT
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:snap_challenge@hkust-exchange
+DTSTAMP:20260813T000000Z
+DTSTART;VALUE=DATE:20260925
+DTEND;VALUE=DATE:20260926
+SUMMARY:Exchange Snap Challenge - Submission Deadline
+DESCRIPTION:Create a short video on one of these themes - travel vlog-style
+  reel of your orientation\, "Day in the Life at HKUST"\, "Hidden gems on c
+ ampus"\, "Hong Kong with HKUST"\, or "Found my squad at HKUST". Prizes: Gr
+ and Prize (5 winners) an Ocean Park ticket\; Appreciation Award a film cam
+ era OR a HK$200 Starbucks voucher. Submission deadline 25 Sep. Details sha
+ red via email.
+END:VEVENT
+END:VCALENDAR
