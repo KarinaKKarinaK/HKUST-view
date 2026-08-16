@@ -29,7 +29,7 @@ import {
 import { Logo, LogoMark } from "@/components/Logo";
 import { AddToCalendar } from "@/components/AddToCalendar";
 import { events, campusTourSlots, type CalEvent } from "@/data/events";
-import { quickLinks, whatsappGroups, instagramUrl } from "@/data/links";
+import { quickLinks, whatsappGroups, instagram } from "@/data/links";
 import { checklistItems, faq, studentCard, lastUpdated } from "@/data/content";
 import { downloadIcs } from "@/lib/calendar";
 import { dayLabel, dayKey, timeLabel } from "@/lib/format";
@@ -755,77 +755,152 @@ function StudentCardSection() {
 
 /* ---------- student visa ---------- */
 
+function VisaLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group inline-flex items-center gap-1.5 rounded-full border border-ink/15 px-3 py-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-ink/70 transition hover:border-ink hover:text-ink dark:border-white/20 dark:text-paper/70 dark:hover:border-white/50 dark:hover:text-paper"
+    >
+      {children}
+      <ArrowUpRight className="h-3 w-3 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+    </a>
+  );
+}
+
 function VisaSection() {
-  const steps = [
-    "Your student visa is an e-Visa in PDF format. You can travel in and out of Hong Kong within its validity period. Check your name and visa validity period on the visa label. If anything is wrong, email study.abroad@ust.hk as soon as possible.",
-    "Save a soft copy on your phone and print it on a sheet of A4 white paper. Your travel document must be valid and the same nationality as stated in your application.",
-    'At the Immigration Counter, you MUST show your student visa AND your travel document. Make sure the officer issues you a LANDING SLIP stating "STUDENT - Permitted to remain until DD-Mmm-YYYY". Without it, your visa is not activated and you cannot collect your HKUST Student Card.',
-    "Keep your landing slip safe for your whole stay in Hong Kong. You will need it to collect your student card and upload later.",
+  const regSteps = [
+    "Online Registration Form: verify your personal particulars. Submit once only.",
+    "Upload ID documents: passport plus your HK student e-Visa (HKID if you have one; EEP for Mainland students). Tuition-payment proof does not apply to exchange students.",
+    "Upload a passport-style photo on a white background. This becomes your student card photo, so there is no separate student card form.",
   ];
   return (
-    <div className="grid gap-4 md:grid-cols-5">
-      <div className="reveal glass rounded-3xl p-7 sm:p-9 md:col-span-3">
-        <div className="flex items-center gap-2 text-accent">
-          <Plane className="h-5 w-5" />
-          <p className="mono-label !text-accent">Entering Hong Kong</p>
+    <div className="space-y-4">
+      <div className="grid gap-4 md:grid-cols-2">
+        {/* Download e-Visa */}
+        <div className="reveal glass rounded-3xl p-7">
+          <div className="flex items-center gap-2 text-accent">
+            <Plane className="h-5 w-5" />
+            <p className="mono-label !text-accent">Download your e-Visa</p>
+          </div>
+          <p className="mt-4 text-[15px] leading-relaxed text-ink/70 dark:text-paper/70">
+            Your HK student visa is an e-Visa, a PDF you download yourself. It is not a
+            sticker and it does not wait until you arrive. Download it as soon as it is
+            approved.
+          </p>
+          <p className="mt-3 text-[15px] leading-relaxed text-ink/70 dark:text-paper/70">
+            On the HK Immigration e-Visa page you will need your visa application reference
+            number (in your HKUST approval email), your date of birth, and the first 4
+            digits of the travel document you applied with. Click Download ALL to get the
+            e-Visa and the approval letter. Save it on your phone and print it on A4.
+          </p>
+          <div className="mt-4 rounded-xl bg-ink/5 px-4 py-3 text-sm leading-relaxed text-ink/70 dark:bg-white/5 dark:text-paper/70">
+            Check it right away: name matches your passport, date of birth correct,
+            validity covers your whole study period (about 19 Dec 2026 for Fall 2026, or
+            about 28 May 2027 for Spring 2027), institution is HKUST. If anything is wrong,
+            email study.abroad@ust.hk immediately.
+          </div>
+          <div className="mt-4">
+            <VisaLink href="https://www.gov.hk/en/residents/immigration/nonpermanent/downloadevisa.htm">
+              Download HK e-Visa
+            </VisaLink>
+          </div>
         </div>
-        <ol className="mt-5 space-y-5">
-          {steps.map((s, i) => (
-            <li key={i} className="flex gap-4">
-              <span className="font-sans text-xl font-semibold tabular-nums tracking-tightest text-accent">
-                0{i + 1}
-              </span>
-              <span className="text-[15px] leading-relaxed text-ink/70 dark:text-paper/70">
-                {s}
-              </span>
-            </li>
-          ))}
-        </ol>
-      </div>
-      <div className="reveal flex flex-col gap-4 md:col-span-2">
-        <div className="glass rounded-3xl p-7">
+
+        {/* Register in SIS */}
+        <div className="reveal glass rounded-3xl p-7">
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-5 w-5 text-ink/40 dark:text-paper/40" />
-            <p className="mono-label">Good to know</p>
+            <p className="mono-label">Register in SIS before you fly</p>
           </div>
-          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink/70 dark:text-paper/70">
+          <p className="mt-4 text-[15px] leading-relaxed text-ink/70 dark:text-paper/70">
+            Complete Online Program Registration in SIS (SISPROD) before you travel. Three
+            steps:
+          </p>
+          <ol className="mt-4 space-y-4">
+            {regSteps.map((s, i) => (
+              <li key={i} className="flex gap-3">
+                <span className="font-sans text-lg font-semibold tabular-nums tracking-tightest text-accent">
+                  0{i + 1}
+                </span>
+                <span className="text-[15px] leading-relaxed text-ink/70 dark:text-paper/70">
+                  {s}
+                </span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-4 text-sm text-ink/60 dark:text-paper/60">
+            Reviews take about 5 working days, so do it early. All 3 steps can be done
+            before arrival. Only the landing slip waits.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <VisaLink href="https://sisprod.psft.ust.hk/psp/SISPROD/EMPLOYEE/HRMS/c/Z_SR_MNU.ZR_REG_FORM_CMP.GBL?">
+              Open SIS
+            </VisaLink>
+            <VisaLink href="https://registry.hkust.edu.hk/resource-library/guidance-completing-your-online-program-registration">
+              Guidance
+            </VisaLink>
+            <VisaLink href="https://registry.hkust.edu.hk/resource-library/upload-registration-document-samples">
+              Upload samples
+            </VisaLink>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        {/* Landing slip */}
+        <div className="reveal rounded-3xl border border-accent/30 bg-accent/[0.05] p-7">
+          <p className="mono-label !text-accent">The landing slip is critical</p>
+          <p className="mt-4 text-[15px] leading-relaxed text-ink/75 dark:text-paper/75">
+            On entry to Hong Kong, show your e-Visa and passport at immigration. The
+            officer activates your visa and issues a STUDENT landing slip. Keep it safe.
+            Without it, your visa is not activated and you cannot collect your student
+            card.
+          </p>
+          <p className="mt-3 text-[15px] leading-relaxed text-ink/75 dark:text-paper/75">
+            After you arrive: upload the landing slip in SIS (deadline 11 Sep), then
+            collect your physical student card on campus (from 27 Aug, deadline 11 Sep)
+            with your passport or HKID and your landing slip.
+          </p>
+        </div>
+
+        {/* Timing & travel */}
+        <div className="reveal rounded-3xl bg-ink p-7 text-paper dark:bg-white/[0.06]">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-paper/50">
+            Timing and travel
+          </p>
+          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-paper/80">
             <li>
-              The visa only covers entry to Hong Kong. Depending on your citizenship you
-              may also need an exit permit from your home country. You are responsible for
-              completing any such steps.
+              Hall check-in opens 10am on 27 Aug, with no early check-in. If you land
+              earlier, book your own accommodation for the gap.
             </li>
             <li>
-              Enter and leave Hong Kong within the dates on your visa, or it becomes void.
-              To stay on after your exchange, you may need a tourist visa.
+              Your e-Visa lets you travel in and out of Hong Kong within its validity, but
+              enter and leave before it expires or it becomes void.
+            </li>
+            <li>
+              Going to Mainland China? You may need a separate Chinese tourist visa.
             </li>
           </ul>
-        </div>
-        <div className="rounded-3xl bg-ink p-7 text-paper dark:bg-white/[0.06]">
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-paper/50">
-            Travelling to the Chinese Mainland
-          </p>
-          <p className="mt-3 text-sm leading-relaxed text-paper/80">
-            You may need a Chinese Mainland tourist visa, from a PRC Embassy or
-            Consulate-General in your country or after you arrive in Hong Kong.
-          </p>
-          <div className="mt-4 flex flex-col gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             <a
               href="https://www.visaforchina.cn/HKG3_EN/qianzhengyewu"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-between gap-2 rounded-full bg-paper/10 px-4 py-2.5 text-sm font-medium transition hover:bg-accent"
+              className="group inline-flex items-center gap-1.5 rounded-full bg-paper/10 px-3 py-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.12em] transition hover:bg-accent"
             >
-              Chinese Visa Application Center
-              <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Chinese Visa Center
+              <ArrowUpRight className="h-3 w-3 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
               href="https://ww1.ctshk.com/en/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-between gap-2 rounded-full bg-paper/10 px-4 py-2.5 text-sm font-medium transition hover:bg-accent"
+              className="group inline-flex items-center gap-1.5 rounded-full bg-paper/10 px-3 py-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.12em] transition hover:bg-accent"
             >
-              China Travel Service (Hong Kong)
-              <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              China Travel Service HK
+              <ArrowUpRight className="h-3 w-3 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
         </div>
@@ -921,21 +996,25 @@ function Connect() {
         </div>
       </div>
       <div className="reveal flex flex-col gap-4">
-        <a
-          href={instagramUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group glass flex items-center gap-4 rounded-3xl p-7 transition hover:-translate-y-0.5"
-        >
-          <Instagram className="h-7 w-7 text-accent" />
-          <div>
-            <p className="text-lg font-semibold tracking-tight">@abroadathkust</p>
-            <p className="text-sm text-ink/50 dark:text-paper/50">
-              Updates, events and reels
-            </p>
+        <div className="glass rounded-3xl p-5">
+          <p className="mono-label mb-3 flex items-center gap-2">
+            <Instagram className="h-4 w-4 text-accent" /> Instagram
+          </p>
+          <div className="grid gap-2">
+            {instagram.map((ig) => (
+              <a
+                key={ig.url}
+                href={ig.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between rounded-xl bg-ink/5 px-4 py-3 text-sm font-medium transition hover:bg-accent hover:text-paper dark:bg-white/5"
+              >
+                {ig.label}
+                <ArrowUpRight className="h-4 w-4 opacity-60 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            ))}
           </div>
-          <ArrowUpRight className="ml-auto h-5 w-5 text-ink/30 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-paper/30" />
-        </a>
+        </div>
         <div className="glass flex-1 rounded-3xl p-7">
           <p className="mono-label">Exchange buddies</p>
           <p className="mt-3 text-[15px] leading-relaxed text-ink/70 dark:text-paper/70">
@@ -1122,9 +1201,9 @@ export function Page() {
         <Section
           id="visa"
           index="02"
-          eyebrow="Student visa"
-          title="Your visa and arrival"
-          intro="Read this before you fly. Your landing slip is what activates your visa and unlocks your student card."
+          eyebrow="Visa and registration"
+          title="Sort your visa before you fly"
+          intro="Your HK student visa is an e-Visa you download yourself, and registration happens online. Do it all before you land. Only the landing slip waits."
         >
           <VisaSection />
         </Section>
