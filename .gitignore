@@ -1,0 +1,14 @@
+# deps / build
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# source asset dump — used to pick images, not deployed (copies live in public/images)
+/images/
+
+# env / os
+.env*
+.DS_Store
+.vercel
