@@ -1161,6 +1161,27 @@ function QuickLinks() {
 
 function Perks() {
   return (
+    <div className="space-y-4">
+      <a
+        href="https://hk-event-scraper.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="reveal group flex flex-col items-start justify-between gap-4 rounded-3xl bg-ink p-7 text-paper transition hover:bg-accent dark:bg-white/[0.06] dark:hover:bg-accent sm:flex-row sm:items-center"
+      >
+        <div>
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-paper/50 group-hover:text-paper/80">
+            Events in Hong Kong and nearby
+          </p>
+          <p className="mt-2 max-w-xl text-lg font-semibold tracking-tight">
+            What is on this week? Concerts, markets, festivals and day trips, all in one
+            live feed.
+          </p>
+        </div>
+        <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-paper/10 px-5 py-2.5 text-sm font-semibold">
+          Open the events feed
+          <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </span>
+      </a>
     <div className="grid gap-4 md:grid-cols-2">
       <div className="reveal relative overflow-hidden rounded-3xl border border-ink/10 p-7 text-paper dark:border-white/10">
         <img
@@ -1207,6 +1228,7 @@ function Perks() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

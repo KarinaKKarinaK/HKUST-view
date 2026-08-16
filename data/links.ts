@@ -37,8 +37,8 @@ export const quickLinks: LinkGroup[] = [
         url: "https://registry.hkust.edu.hk/resource-library/course-catalog",
       },
       {
-        label: "Class Schedule & Quota",
-        url: "https://w5.ab.ust.hk/wcq/cgi-bin/",
+        label: "Class Schedule & Quota (2026-27 Fall)",
+        url: "https://w5.ab.ust.hk/wcq/cgi-bin/2610/",
       },
       { label: "Academic Registry", url: "https://registry.hkust.edu.hk/" },
       {
