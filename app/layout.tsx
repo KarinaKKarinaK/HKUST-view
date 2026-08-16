@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
+import { Providers } from "@/components/providers";
+import { SiteNav, Footer } from "@/components/nav";
+import { InstallPrompt } from "@/components/InstallPrompt";
 import "./globals.css";
 
 const title = "HKUST Exchange - Everything You Need";
@@ -53,7 +56,12 @@ export default function RootLayout({
             __html: `document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');}catch(e){}`,
           }}
         />
-        {children}
+        <Providers>
+          <SiteNav />
+          {children}
+          <Footer />
+          <InstallPrompt />
+        </Providers>
         <Analytics />
       </body>
     </html>

@@ -1,11 +1,5 @@
-import { Page } from "@/components/sections";
-import { InstallPrompt } from "@/components/InstallPrompt";
+import { HomeMain } from "@/components/sections";
 
 export default function Home() {
-  return (
-    <>
-      <Page />
-      <InstallPrompt />
-    </>
-  );
+  return <HomeMain />;
 }

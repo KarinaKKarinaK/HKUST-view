@@ -1,12 +1,5 @@
 "use client";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   ArrowRight,
@@ -14,62 +7,21 @@ import {
   Copy,
   Check,
   MapPin,
-  Moon,
-  Sun,
   ChevronDown,
-  ExternalLink,
   MessageCircle,
   Instagram,
-  Menu,
-  X,
-  Share2,
   Calendar,
   Plane,
   ShieldCheck,
 } from "lucide-react";
-import { Logo, LogoMark } from "@/components/Logo";
+import { LogoMark } from "@/components/Logo";
 import { AddToCalendar } from "@/components/AddToCalendar";
+import { useSchool, schoolInfo, useReveal } from "@/components/providers";
 import { events, campusTourSlots, type CalEvent } from "@/data/events";
 import { quickLinks, whatsappGroups, instagram } from "@/data/links";
-import { checklistItems, faq, studentCard, lastUpdated } from "@/data/content";
+import { checklistItems, faq, studentCard } from "@/data/content";
 import { googleSubscribeUrl, outlookSubscribeUrl } from "@/lib/calendar";
 import { dayLabel, dayKey, timeLabel } from "@/lib/format";
-
-/* ---------- school personalization (retention feature) ---------- */
-
-type SchoolCode = "SSCI" | "SENG" | "SBM" | "SHSS";
-const SCHOOLS: { code: SchoolCode; name: string; lt: string }[] = [
-  { code: "SSCI", name: "Science", lt: "Lecture Theatre E" },
-  { code: "SENG", name: "Engineering", lt: "Lecture Theatre A" },
-  { code: "SBM", name: "Business & Management", lt: "Lecture Theatre B" },
-  { code: "SHSS", name: "Humanities & Social Science", lt: "Lecture Theatre K" },
-];
-
-const SchoolCtx = createContext<{
-  school: SchoolCode | null;
-  setSchool: (s: SchoolCode | null) => void;
-}>({ school: null, setSchool: () => {} });
-
-function SchoolProvider({ children }: { children: React.ReactNode }) {
-  const [school, setSchoolState] = useState<SchoolCode | null>(null);
-  useEffect(() => {
-    const s = localStorage.getItem("school") as SchoolCode | null;
-    if (s && SCHOOLS.some((x) => x.code === s)) setSchoolState(s);
-  }, []);
-  const setSchool = (s: SchoolCode | null) => {
-    setSchoolState(s);
-    if (s) localStorage.setItem("school", s);
-    else localStorage.removeItem("school");
-  };
-  return (
-    <SchoolCtx.Provider value={{ school, setSchool }}>
-      {children}
-    </SchoolCtx.Provider>
-  );
-}
-const useSchool = () => useContext(SchoolCtx);
-const schoolInfo = (c: SchoolCode | null) =>
-  SCHOOLS.find((s) => s.code === c) ?? null;
 
 /* ---------- helpers ---------- */
 
@@ -179,33 +131,6 @@ function BulkCalendar({
   );
 }
 
-function useReveal() {
-  useEffect(() => {
-    const els = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    els.forEach((el) => io.observe(el));
-    // Failsafe: reveal anything still hidden after 2s.
-    const t = setTimeout(
-      () => document.querySelectorAll(".reveal:not(.in)").forEach((el) => el.classList.add("in")),
-      2000
-    );
-    return () => {
-      io.disconnect();
-      clearTimeout(t);
-    };
-  }, []);
-}
-
 function CopyBtn({ text }: { text: string }) {
   const [done, setDone] = useState(false);
   return (
@@ -267,180 +192,6 @@ function Section({
       </div>
       <div className="mt-10">{children}</div>
     </section>
-  );
-}
-
-/* ---------- nav ---------- */
-
-const NAV = [
-  ["Checklist", "before"],
-  ["Visa", "visa"],
-  ["Schedule", "schedule"],
-  ["Card", "card"],
-  ["Housing", "housing"],
-  ["Connect", "connect"],
-  ["Links", "links"],
-  ["FAQ", "faq"],
-];
-
-function SchoolPicker({ compact = false }: { compact?: boolean }) {
-  const { school, setSchool } = useSchool();
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!open) return;
-    const h = (e: MouseEvent) =>
-      ref.current && !ref.current.contains(e.target as Node) && setOpen(false);
-    document.addEventListener("mousedown", h);
-    return () => document.removeEventListener("mousedown", h);
-  }, [open]);
-  const info = schoolInfo(school);
-  return (
-    <div className="relative" ref={ref}>
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className={`inline-flex items-center gap-1.5 rounded-full border font-mono text-[11px] font-medium uppercase tracking-[0.12em] transition ${
-          school
-            ? "border-accent/40 bg-accent/10 text-accent"
-            : "border-ink/15 text-ink/60 hover:border-ink dark:border-white/20 dark:text-paper/60"
-        } ${compact ? "px-3 py-2" : "px-3 py-1.5"}`}
-      >
-        {school ? school : "Set school"}
-        <ChevronDown className="h-3 w-3 opacity-60" />
-      </button>
-      {open && (
-        <div className="glass absolute right-0 z-40 mt-2 w-64 overflow-hidden rounded-xl p-1.5 shadow-2xl">
-          <p className="px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink/40 dark:text-paper/40">
-            Your admitted school
-          </p>
-          {SCHOOLS.map((s) => (
-            <button
-              key={s.code}
-              onClick={() => {
-                setSchool(s.code);
-                setOpen(false);
-              }}
-              className={`flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2.5 text-left text-sm transition hover:bg-ink/5 dark:hover:bg-white/10 ${
-                school === s.code ? "font-semibold text-accent" : ""
-              }`}
-            >
-              <span>
-                {s.name}
-                <span className="ml-1.5 font-mono text-[10px] text-ink/40 dark:text-paper/40">
-                  {s.code}
-                </span>
-              </span>
-              {school === s.code && <Check className="h-4 w-4" />}
-            </button>
-          ))}
-          {school && (
-            <button
-              onClick={() => {
-                setSchool(null);
-                setOpen(false);
-              }}
-              className="mt-1 w-full rounded-lg px-3 py-2 text-left font-mono text-[10px] uppercase tracking-[0.14em] text-ink/40 hover:bg-ink/5 dark:text-paper/40 dark:hover:bg-white/10"
-            >
-              Clear
-            </button>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function ShareBtn() {
-  const [copied, setCopied] = useState(false);
-  const share = async () => {
-    const url = "https://hkust-view.vercel.app";
-    const data = { title: "HKUST Exchange", text: "Everything you need for exchange at HKUST", url };
-    if (navigator.share) {
-      try { await navigator.share(data); } catch {}
-    } else {
-      navigator.clipboard?.writeText(url);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    }
-  };
-  return (
-    <button
-      onClick={share}
-      aria-label="Share"
-      className="rounded-full p-2 text-ink/60 transition hover:bg-ink/5 hover:text-ink dark:text-paper/60 dark:hover:bg-white/10 dark:hover:text-paper"
-    >
-      {copied ? <Check className="h-[18px] w-[18px] text-accent" /> : <Share2 className="h-[18px] w-[18px]" />}
-    </button>
-  );
-}
-
-function Nav() {
-  const [dark, setDark] = useState(false);
-  const [menu, setMenu] = useState(false);
-  useEffect(() => setDark(document.documentElement.classList.contains("dark")), []);
-  const toggle = () => {
-    const on = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", on ? "dark" : "light");
-    setDark(on);
-  };
-  return (
-    <header className="no-print sticky top-0 z-50 border-b border-ink/10 bg-paper/95 pt-[env(safe-area-inset-top)] backdrop-blur-xl dark:border-white/10 dark:bg-ink/95">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
-        <a href="#top" className="shrink-0">
-          <Logo />
-        </a>
-        <div className="hidden items-center gap-0.5 lg:flex">
-          {NAV.map(([label, id]) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className="rounded-full px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-ink/50 transition hover:bg-ink/5 hover:text-ink dark:text-paper/50 dark:hover:bg-white/10 dark:hover:text-paper"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="hidden sm:block">
-            <SchoolPicker />
-          </div>
-          <ShareBtn />
-          <button
-            onClick={toggle}
-            aria-label="Toggle dark mode"
-            className="rounded-full p-2 text-ink/60 transition hover:bg-ink/5 hover:text-ink dark:text-paper/60 dark:hover:bg-white/10 dark:hover:text-paper"
-          >
-            {dark ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
-          </button>
-          <button
-            onClick={() => setMenu((v) => !v)}
-            aria-label="Menu"
-            className="rounded-full p-2 text-ink/60 hover:bg-ink/5 lg:hidden dark:text-paper/60 dark:hover:bg-white/10"
-          >
-            {menu ? <X className="h-[18px] w-[18px]" /> : <Menu className="h-[18px] w-[18px]" />}
-          </button>
-        </div>
-      </nav>
-      {menu && (
-        <div className="border-t border-ink/10 px-5 py-3 lg:hidden dark:border-white/10">
-          <div className="mb-3 sm:hidden">
-            <SchoolPicker compact />
-          </div>
-          <div className="grid grid-cols-2 gap-1">
-            {NAV.map(([label, id]) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                onClick={() => setMenu(false)}
-                className="rounded-lg px-3 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-ink/70 hover:bg-ink/5 dark:text-paper/70 dark:hover:bg-white/10"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-    </header>
   );
 }
 
@@ -1271,51 +1022,13 @@ function Faq() {
   );
 }
 
-/* ---------- footer ---------- */
-
-function Footer() {
-  return (
-    <footer className="border-t border-ink/10 dark:border-white/10">
-      <div className="mx-auto max-w-6xl px-5 py-14">
-        <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
-          <Logo />
-          <BulkCalendar
-            icsPath="/calendar/all.ics"
-            name="HKUST Exchange key dates"
-            label="Add all key dates"
-            triggerClass="inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-semibold transition hover:border-ink hover:bg-ink hover:text-paper dark:border-white/25 dark:hover:bg-paper dark:hover:text-ink"
-          />
-        </div>
-        <p className="mt-8 max-w-3xl text-sm leading-relaxed text-ink/50 dark:text-paper/50">
-          Made by exchange students, for exchange students. Unofficial and
-          community-maintained, not affiliated with or endorsed by HKUST. Dates, venues
-          and links may change. Always confirm every detail against the official emails
-          from HKUST (Academic Registry, SHRLO, and the Office of Global Learning).{" "}
-          <a
-            href="https://github.com/KarinaKKarinaK/HKUST-view#readme"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-ink underline underline-offset-2 dark:text-paper"
-          >
-            Read the full disclaimer
-          </a>
-          .
-        </p>
-        <p className="mono-label mt-6">Last updated {lastUpdated} // HKT</p>
-      </div>
-    </footer>
-  );
-}
-
 /* ---------- page ---------- */
 
-export function Page() {
+export function HomeMain() {
   useReveal();
   return (
-    <SchoolProvider>
-      <Nav />
-      <main>
-        <Hero />
+    <main>
+      <Hero />
         <Section
           id="before"
           index="01"
@@ -1371,7 +1084,5 @@ export function Page() {
           <Faq />
         </Section>
       </main>
-      <Footer />
-    </SchoolProvider>
   );
 }

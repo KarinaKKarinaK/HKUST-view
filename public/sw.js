@@ -1,4 +1,4 @@
-// Minimal offline-ish service worker. Stale-while-revalidate for same-origin GETs.
+// Minimal caching service worker. Stale-while-revalidate for same-origin GETs.
 // bump CACHE to invalidate on redeploy.
 const CACHE = "hkust-exchange-v1";
 
