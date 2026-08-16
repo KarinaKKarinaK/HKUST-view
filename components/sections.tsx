@@ -606,12 +606,9 @@ function EventCard({ e }: { e: CalEvent }) {
   const { school } = useSchool();
   const info = schoolInfo(school);
   const isInduction = e.key === "academic_induction";
-  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div
       className={`reveal group relative flex flex-col rounded-2xl border p-5 transition hover:border-ink/30 ${
-        menuOpen ? "z-[70]" : ""
-      } ${
         cat.accent
           ? "border-accent/30 bg-accent/[0.04] hover:border-accent/60"
           : "border-ink/10 bg-white/50 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/25"
@@ -653,7 +650,7 @@ function EventCard({ e }: { e: CalEvent }) {
         </p>
       )}
       <div className="mt-4 pt-1">
-        <AddToCalendar event={e} compact onOpenChange={setMenuOpen} />
+        <AddToCalendar event={e} compact />
       </div>
     </div>
   );
