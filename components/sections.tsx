@@ -360,7 +360,6 @@ function Hero() {
 /* ---------- checklist ---------- */
 
 function Checklist() {
-  const { school } = useSchool();
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [ready, setReady] = useState(false);
 
@@ -411,12 +410,6 @@ function Checklist() {
             {ready ? `${done} of ${total} done` : "Loading"}
           </p>
         </div>
-        {school === "SBM" && (
-          <p className="max-w-[15rem] rounded-xl bg-accent/10 px-3 py-2 text-xs font-medium text-accent">
-            SBM: wait for your School's instructions on the network account, course and
-            online registration steps.
-          </p>
-        )}
       </div>
       <div className="mb-6 h-1.5 overflow-hidden rounded-full bg-ink/10 dark:bg-white/10">
         <div
