@@ -68,14 +68,14 @@ export const quickLinks: LinkGroup[] = [
 
 // EDIT THESE - paste real WhatsApp invite links (https://chat.whatsapp.com/XXXX). "" = coming soon.
 export const whatsappGroups: Link[] = [
-  { label: "All Exchange Students 2026", url: "" },
-  { label: "Housing & Roommates", url: "" },
-  { label: "Trips & Travel around HK/Asia", url: "" },
-  { label: "Buy / Sell / Free stuff", url: "" },
-  { label: "School of Science", url: "" },
-  { label: "School of Engineering", url: "" },
-  { label: "School of Business & Management", url: "" },
-  { label: "School of Humanities & Social Science", url: "" },
+  { label: "HKUST Night Out", url: "https://chat.whatsapp.com/H4bR8NjofGo132SSlPooBL" },
+  { label: "Travel around HK & Asia", url: "https://chat.whatsapp.com/DYJLIxLQnAfEFkO3XfW0wH" },
+  { label: "Running", url: "https://chat.whatsapp.com/IpgPD3Nh6vQ7XlG1boVdgK" },
+  { label: "Hiking", url: "https://chat.whatsapp.com/Fkn2YmHyWh90uXTutRlpQl" },
+  { label: "Football", url: "https://chat.whatsapp.com/8g5qPgwiDSW6pNnnTUxbir" },
+  { label: "Badminton", url: "https://chat.whatsapp.com/Fgz3h45RyXp0Eaa35vy8zv" },
+  { label: "Gym", url: "https://chat.whatsapp.com/Ho95H3IVL2i4vtoUqla9L9" },
+  { label: "Computer Science", url: "https://chat.whatsapp.com/IpgPD3Nh6vQ7XlG1boVdgK" },
 ];
 
 export const instagramUrl = "https://www.instagram.com/abroadathkust/";
