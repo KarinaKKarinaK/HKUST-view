@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   applicationName: "HKUST Exchange",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: "HKUST Exchange",
   },
   icons: {
@@ -32,6 +32,7 @@ export const viewport: Viewport = {
   themeColor: "#0B0B0C",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

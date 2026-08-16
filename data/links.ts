@@ -84,7 +84,7 @@ export const quickLinks: LinkGroup[] = [
         label: "Student Housing (SHRLO)",
         url: "https://shrl.hkust.edu.hk/",
       },
-      { label: "Interactive Campus Map", url: "https://map.ust.hk/" },
+      { label: "Interactive Campus Map", url: "https://maps.ust.hk/" },
       { label: "HKUST main site", url: "https://hkust.edu.hk/" },
     ],
   },

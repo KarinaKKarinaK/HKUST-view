@@ -384,7 +384,7 @@ function Nav() {
     setDark(on);
   };
   return (
-    <header className="no-print sticky top-0 z-50 border-b border-ink/10 bg-paper/70 backdrop-blur-xl dark:border-white/10 dark:bg-ink/70">
+    <header className="no-print sticky top-0 z-50 border-b border-ink/10 bg-paper/95 pt-[env(safe-area-inset-top)] backdrop-blur-xl dark:border-white/10 dark:bg-ink/95">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
         <a href="#top" className="shrink-0">
           <Logo />
@@ -1045,7 +1045,7 @@ function HousingSection() {
             <ArrowUpRight className="h-5 w-5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
           <a
-            href="https://map.ust.hk/"
+            href="https://maps.ust.hk/"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center justify-between rounded-2xl border border-ink/15 px-5 py-4 transition hover:border-ink dark:border-white/20"
