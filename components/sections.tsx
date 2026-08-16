@@ -980,6 +980,11 @@ function VisaSection() {
               enter and leave before it expires or it becomes void.
             </li>
             <li>
+              Staying a full year (180+ days)? You also need a Hong Kong ID card. Book an
+              immigration appointment early once your visa is issued, as the earliest slots
+              fill up fast. One-semester students do not need one.
+            </li>
+            <li>
               Going to Mainland China? You may need a separate Chinese tourist visa.
             </li>
           </ul>

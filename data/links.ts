@@ -16,6 +16,10 @@ export const quickLinks: LinkGroup[] = [
         url: "https://sisprod.psft.ust.hk/psp/SISPROD/EMPLOYEE/HRMS/c/Z_SR_MNU.ZR_REG_FORM_CMP.GBL?",
       },
       {
+        label: "Online Registration form",
+        url: "https://registry.hkust.edu.hk/online-reg",
+      },
+      {
         label: "Download HK e-Visa",
         url: "https://www.gov.hk/en/residents/immigration/nonpermanent/downloadevisa.htm",
       },
@@ -46,6 +50,10 @@ export const quickLinks: LinkGroup[] = [
         url: "https://registry.hkust.edu.hk/resource-library/student-portal",
       },
       { label: "Canvas (LMS)", url: "https://canvas.ust.hk/" },
+      {
+        label: "Course reviews (ust.space)",
+        url: "https://ust.space/",
+      },
       {
         label: "Useful academic tools",
         url: "https://registry.hkust.edu.hk/useful-tools",
@@ -100,7 +108,6 @@ export const whatsappGroups: Link[] = [
   { label: "Football", url: "https://chat.whatsapp.com/8g5qPgwiDSW6pNnnTUxbir" },
   { label: "Badminton", url: "https://chat.whatsapp.com/Fgz3h45RyXp0Eaa35vy8zv" },
   { label: "Gym", url: "https://chat.whatsapp.com/Ho95H3IVL2i4vtoUqla9L9" },
-  { label: "Computer Science", url: "https://chat.whatsapp.com/IpgPD3Nh6vQ7XlG1boVdgK" },
 ];
 
 export const instagram: Link[] = [
