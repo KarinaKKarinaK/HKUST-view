@@ -1175,11 +1175,11 @@ function Perks() {
       >
         <div>
           <p className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-paper/50 group-hover:text-paper/80">
-            Tech and startup events in Hong Kong and nearby
+            Into tech and startups?
           </p>
           <p className="mt-2 max-w-xl text-lg font-semibold tracking-tight">
-            Hackathons, startup meetups, robotics and tech talks, ranked by relevance in
-            one live feed.
+            See upcoming tech and startup events in Hong Kong and nearby, all in one live
+            feed.
           </p>
         </div>
         <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-paper/10 px-5 py-2.5 text-sm font-semibold">
